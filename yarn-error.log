@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js add firebase@7.9.0
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add expo
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/eaindra/.dotnet/tools
 
 Yarn version: 
   1.22.5
@@ -14,50 +14,45 @@ Platform:
   linux x64
 
 Trace: 
-  Error: write EPIPE
-      at afterWriteDispatched (internal/stream_base_commons.js:78:25)
-      at writeGeneric (internal/stream_base_commons.js:73:3)
-      at Socket._writeGeneric (net.js:714:5)
-      at Socket._write (net.js:726:8)
-      at doWrite (_stream_writable.js:415:12)
-      at writeOrBuffer (_stream_writable.js:399:5)
-      at Socket.Writable.write (_stream_writable.js:299:11)
-      at Object.clearLine (readline.js:1176:12)
-      at clearLine (/usr/share/yarn/lib/cli.js:49658:12)
-      at clearNthLine (/usr/share/yarn/lib/cli.js:49696:5)
+  Error: EACCES: permission denied, mkdir '/home/eaindra/ReactJS_Projects/e-commerce-app/mini-kiosk/node_modules/@babel/helper-compilation-targets/node_modules/debug'
 
 npm manifest: 
   {
-    "main": "node_modules/expo/AppEntry.js",
     "scripts": {
-      "start": "expo start",
-      "android": "expo start --android",
-      "ios": "expo start --ios",
+      "start": "react-native start",
+      "android": "react-native run-android",
+      "ios": "react-native run-ios",
       "web": "expo start --web",
       "eject": "expo eject"
     },
     "dependencies": {
+      "expo": "~40.0.0",
+      "expo-splash-screen": "~0.8.0",
+      "expo-status-bar": "~1.0.3",
+      "expo-updates": "~0.4.0",
+      "react": "16.13.1",
+      "react-dom": "16.13.1",
+      "react-native": "~0.63.4",
+      "react-native-gesture-handler": "~1.8.0",
+      "react-native-reanimated": "~1.13.0",
+      "react-native-screens": "~2.15.0",
+      "react-native-unimodules": "~0.12.0",
+      "react-native-web": "~0.13.12",
+      "@react-native-community/async-storage": "~1.12.0",
       "@react-native-community/masked-view": "0.1.10",
+      "@react-navigation/drawer": "^5.11.5",
       "@react-navigation/native": "^5.8.10",
       "@react-navigation/stack": "^5.12.8",
-      "expo": "~40.0.0",
       "expo-auth-session": "~3.0.0",
       "expo-google-app-auth": "^8.1.4",
       "expo-google-sign-in": "~8.4.0",
       "expo-random": "~10.0.0",
-      "expo-status-bar": "~1.0.3",
       "fbjs": "^3.0.0",
       "firebase": "7.9.0",
-      "react": "16.13.1",
-      "react-dom": "16.13.1",
-      "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
       "react-native-elements": "^3.1.0",
-      "react-native-gesture-handler": "~1.8.0",
-      "react-native-reanimated": "~1.13.0",
+      "react-native-google-signin": "^2.1.1",
       "react-native-safe-area-context": "3.1.9",
       "react-native-safe-area-view": "^1.1.1",
-      "react-native-screens": "~2.15.0",
-      "react-native-web": "~0.13.12",
       "react-navigation": "^4.4.3",
       "react-navigation-stack": "^2.10.2",
       "readable-stream": "1.0.33",
@@ -65,7 +60,10 @@ npm manifest:
       "vm-browserify": "0.0.4"
     },
     "devDependencies": {
-      "@babel/core": "~7.9.0"
+      "@babel/core": "~7.9.0",
+      "babel-jest": "~25.2.6",
+      "jest": "~25.2.6",
+      "react-test-renderer": "~16.13.1"
     },
     "private": true,
     "react-native": {
@@ -85,7 +83,9 @@ npm manifest:
       "_stream_passthrough": "readable-stream/passthrough",
       "stream": "stream-browserify",
       "vm": "vm-browserify"
-    }
+    },
+    "name": "mini-kiosk",
+    "version": "1.0.0"
   }
 
 yarn manifest: 
@@ -1569,6 +1569,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
     integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
   
+  "@react-native-community/async-storage@~1.12.0":
+    version "1.12.1"
+    resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.12.1.tgz#25f821b4f6b13abe005ad67e47c6f1cee9f27b24"
+    integrity sha512-70WGaH3PKYASi4BThuEEKMkyAgE9k7VytBqmgPRx3MzJx9/MkspwqJGmn3QLCgHLIFUgF1pit2mWICbRJ3T3lg==
+    dependencies:
+      deep-assign "^3.0.0"
+  
   "@react-native-community/cli-debugger-ui@^4.13.1":
     version "4.13.1"
     resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.13.1.tgz#07de6d4dab80ec49231de1f1fbf658b4ad39b32c"
@@ -1714,6 +1721,14 @@ Lockfile:
       nanoid "^3.1.15"
       query-string "^6.13.6"
       react-is "^16.13.0"
+  
+  "@react-navigation/drawer@^5.11.5":
+    version "5.11.5"
+    resolved "https://registry.yarnpkg.com/@react-navigation/drawer/-/drawer-5.11.5.tgz#9d6ff2f76c4780852ddd73868d76b1274b8ce339"
+    integrity sha512-amDnbVIjkp/ZxNcZ2LyICNiRddUYgFFkgKsHgTYDgZHoL7EqH+qmMPtjHvwIFhU0CHn6y6mI0cRQNLHxqsEjQQ==
+    dependencies:
+      color "^3.1.3"
+      react-native-iphone-x-helper "^1.3.0"
   
   "@react-navigation/native@^3.8.3":
     version "3.8.3"
@@ -5576,6 +5591,11 @@ Lockfile:
       hoist-non-react-statics "^3.3.0"
       invariant "^2.2.4"
       prop-types "^15.7.2"
+  
+  react-native-google-signin@^2.1.1:
+    version "2.1.1"
+    resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-2.1.1.tgz#4281940eee88602b0181dd49affdf8c92980c85c"
+    integrity sha512-6l3fiLdX/bfhh0BoxGq+jGkagFsO+mrE/eRV4+3/0k8+FDxO90vdPpQdDiwlM5vWXRxWthTzMM09/jHw+4cvNw==
   
   react-native-iphone-x-helper@^1.3.0:
     version "1.3.1"

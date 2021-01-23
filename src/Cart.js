@@ -5,6 +5,22 @@ import styles from './Styles'
 import loadTotalPrice from './TotalPriceInCart';
 
 function CartScreen() {
+    const [credential, setCredential] = useState({});
+
+    const getCredentials = async () => {
+  
+      const name = await AsyncStorage.getItem("displayName");
+      const photoUrl = await AsyncStorage.getItem('photoUrl');
+      const email = await AsyncStorage.getItem('email');
+      console.log(await AsyncStorage.getItem("displayName"));
+      const credential = {name: name, photoUrl: photoUrl, email: email};
+      setCredential(credential);
+    }
+  
+    useEffect(() => {
+      getCredentials();
+    }, []);
+  
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
             <ScrollView
@@ -15,6 +31,7 @@ function CartScreen() {
 
                 }}>
                 <View style={styles.cartView}>
+                    <Text h2> Customer Name: {credential.name}</Text>
                     <View style={styles.cartTableHeader}>
                         <View style={styles.cartTableNormalCell}>
                             <Text style={{ fontWeight: 'bold' }}>Product Name </Text>

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "EcommerceApp",
-    "slug": "EcommerceApp",
+    "name": "mini-kiosk",
+    "slug": "mini-kiosk",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.eaindra-wp.mini-kiosk"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,7 +26,6 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "mini_kiosk.android",
-      
       "googleServicesFile": "./google-services.json"
     },
     "web": {

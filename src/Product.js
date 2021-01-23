@@ -19,7 +19,7 @@ function ProductScreen(props) {
     return (
         <Card>
             {/* <Card.Image source={'https://vader-prod.s3.amazonaws.com/1543958419-810KAtkwn6L.jpg'}></Card.Image> */}
-            <Card.Image source={props.product.img}></Card.Image>
+            <Card.Image source={{uri: props.product.photoUrl}}></Card.Image>
             {/* image={{ uri: 'https://vader-prod.s3.amazonaws.com/1543958419-810KAtkwn6L.jpg' }} */}
             <Text style={{ marginBottom: 10, marginTop: 20 }} h2>
                 {props.product.name}

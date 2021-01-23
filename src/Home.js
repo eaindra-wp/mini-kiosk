@@ -3,36 +3,37 @@ import { Button, View, Text, StyleSheet, ScrollView } from 'react-native';
 import ProductScreen from './Product'
 import styles from './Styles'
 import CheckOut from './CheckOut'
+import firebase from 'firebase';
+import 'firebase/firestore';
+import AsyncStorage from '@react-native-community/async-storage';
 
-
-const productsFromDB = [
-  {
-    id: 101,
-    name: 'Khaki Suede Polish Work Boots',
-    price: 149.99,
-    img: '../assets/chocolates.jpeg',
-  },
-  {
-    id: 102,
-    name: 'Camo Fang Backpack Jungle',
-    price: 39.99,
-    img: '../assets/snacks.jpeg',
-  },
-  {
-    id: 103,
-    name: 'Parka and Quilted Liner Jacket',
-    price: 49.99,
-    img: '../assets/notebooks.jpeg',
-  },
-  {
-    id: 104,
-    name: 'Cotton Black Cap',
-    price: 12.99,
-    img: '..assets/feminine-products.jpeg',
-  },
-];
 
 function HomeScreen({ navigation }) {
+
+  const [productsList, setProductsList] = useState([]);
+  const ref = firebase.firestore().collection('items');
+
+  useEffect(() => {
+    return ref.onSnapshot(querySnapshot => {
+      const list = [];
+      querySnapshot.forEach(doc => {
+        const { name, price, photoUrl } = doc.data();
+        list.push({
+          id: doc.id,
+          name,
+          price,
+          photoUrl,
+        });
+      });
+      setProductsList(list);
+
+      // if (loading) {
+      //   setLoading(false);
+      // }
+    });
+  }, []);
+
+  console.log(AsyncStorage.getItem("id"));
 
   return (
     <View style={{ flex: 1 }}>
@@ -41,9 +42,10 @@ function HomeScreen({ navigation }) {
           flexGrow: 0,
           width: "100%",
           height: "100%",
+          marginBottom: 40
         }}>
         {
-          productsFromDB.map((product, index) => {
+          productsList.map((product, index) => {
 
             return (
               <View style={styles.row} key={index}>
@@ -56,8 +58,8 @@ function HomeScreen({ navigation }) {
           })
         }
       </ScrollView>
-      <View style={{ position: 'absolute', left: 0, right: 0, bottom: -35 }}>
-        <CheckOut/>
+      <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0}}>
+        <CheckOut />
       </View>
     </View>
   );
